@@ -1,12 +1,7 @@
-package EmployeeManagement;
 import java.util.*;
 import java.sql.*;
 import java.lang.StringBuilder;
 import static java.lang.System.out;
-import EmployeeManagement.ChangeTable;
-import EmployeeManagement.UpdateEmployeeData;
-import EmployeeManagement.UpdateEmployeeSalary;
-import EmployeeManagement.SearchEmployee;
 
 public class Main {
 
@@ -54,23 +49,23 @@ public class Main {
         
     }
 
-    public static void chooseFuntion (String userChoice) {
-        switch (userChoice.toLowerCase()) {
-            case "change table":
+    public static void chooseFunction (String userChoice) {
+        switch (userChoice) {
+            case "1":
                 changeTable();
                 break;
-            case "update employee table":
+            case "2":
                 updateEmployeeSalary();
                 break;
-            case "update employee data":
+            case "3":
                 searchEmployee();
                 break;
-            case "search for an employee":
+            case "4":
                 updateEmployeeData();
                 break;
             default:
-                System.out.println("\nA wrong choice was provided");
-                System.out.println("Please select one of the options listed above");
+                System.out.println("\nInvalid choice was selected.");
+                System.out.println("Please select one of the options listed above by choosing the corresponding number.");
                 getUserChoice(); // Loop back to get a valid choice
                 break;
         }
@@ -78,16 +73,16 @@ public class Main {
 
     public static void getUserChoice(){
         String userChoice = scnr.nextLine().trim();
-        chooseFuntion(userChoice);
+        chooseFunction(userChoice);
     }
 
     public static void presentOptions () {
 
         String str1 = "Welcome to the Employee Management application! Your options are:";
-        String str2 = "\nChange table";
-        String str3 = "\nUpdate employee ealary";
-        String str4 = "\nUpdate employee eata";
-        String str5 = "\nSearch for an employee";
+        String str2 = "\n1. Change table";
+        String str3 = "\n2. Update employee salary";
+        String str4 = "\n3. Update employee data";
+        String str5 = "\n4. Search for an employee";
         String str6 = "\n\nWhat would you like to do?";
 
         StringBuilder stringBuilder = new StringBuilder();
