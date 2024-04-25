@@ -42,6 +42,18 @@ public class Main {
     }
 
     public static void searchEmployee () {
+        out.println("\nPlease enter the employee's first name:");
+        String fname = scnr.nextLine().trim();
+        out.println("\nPlease enter the employee's last name:");
+        String lname = scnr.nextLine().trim();
+        // out.println("Please enter employee's SSN:");
+        // int ssn = scnr.nextInt();
+        out.println("\nPlease enter the employee's ID:");
+        int empID = scnr.nextInt();
+
+        SearchEmployee search = new SearchEmployee();
+        Connection myConn = buildConnection();
+        search.search(fname, lname, empID, myConn);
 
     }
 
@@ -58,10 +70,10 @@ public class Main {
                 updateEmployeeSalary();
                 break;
             case "3":
-                searchEmployee();
+                updateEmployeeData();
                 break;
             case "4":
-                updateEmployeeData();
+                searchEmployee();
                 break;
             default:
                 System.out.println("\nInvalid choice was selected.");
@@ -78,7 +90,7 @@ public class Main {
 
     public static void presentOptions () {
 
-        String str1 = "Welcome to the Employee Management application! Your options are:";
+        String str1 = "\nWelcome to the Employee Management application! Your options are:";
         String str2 = "\n1. Change table";
         String str3 = "\n2. Update employee salary";
         String str4 = "\n3. Update employee data";
