@@ -14,9 +14,9 @@ public class SearchEmployee {
                 "\nName: " + rs.getString("Fname") + " " + rs.getString("Lname") +
                 "\nEmail: " + rs.getString("email") +
                 "\nHire Date: " + rs.getDate("HireDate") +
-                "\nSalary: " + rs.getInt("Salary") + "\n");
+                "\nSalary: " + rs.getInt("Salary"));
                 System.out.println(output.toString());
-                System.out.println("\nSearch successful! What would you like to do?\n1. Search again \n2. Go back to home page");
+                System.out.println("\nSearch successful! What would you like to do next?\n1. Search again \n2. Go back to home page");
                 Main.scnr.nextLine();
                 getUserChoice();
             } else {
