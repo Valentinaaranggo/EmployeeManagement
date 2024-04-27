@@ -46,14 +46,14 @@ public class Main {
         String fname = scnr.nextLine().trim();
         out.println("\nPlease enter the employee's last name:");
         String lname = scnr.nextLine().trim();
-        // out.println("Please enter employee's SSN:");
-        // int ssn = scnr.nextInt();
         out.println("\nPlease enter the employee's ID:");
         int empID = scnr.nextInt();
+        out.println("\nPlease enter the employee's SSN:");
+        int ssn = scnr.nextInt();
 
         SearchEmployee search = new SearchEmployee();
         Connection myConn = buildConnection();
-        search.search(fname, lname, empID, myConn);
+        search.search(fname, lname, empID, ssn, myConn);
 
     }
 

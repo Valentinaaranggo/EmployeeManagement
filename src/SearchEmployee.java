@@ -1,9 +1,9 @@
 import java.sql.*;
 
 public class SearchEmployee {
-    public void search(String fname, String lname, int empID, Connection myConn)
+    public void search(String fname, String lname, int empID, int ssn, Connection myConn)
     {
-        String sql = String.format("SELECT * FROM employees WHERE Fname='%s' AND Lname='%s' AND empid='%d%n';", fname, lname, empID);
+        String sql = String.format("SELECT * FROM employees WHERE Fname='%s' AND Lname='%s' AND empid='%d%n' AND SSN='%d%n';", fname, lname, empID, ssn);
         StringBuilder output = new StringBuilder("");
         try {
             Statement myStmt = myConn.createStatement();
@@ -14,7 +14,8 @@ public class SearchEmployee {
                 "\nName: " + rs.getString("Fname") + " " + rs.getString("Lname") +
                 "\nEmail: " + rs.getString("email") +
                 "\nHire Date: " + rs.getDate("HireDate") +
-                "\nSalary: " + rs.getInt("Salary"));
+                "\nSalary: " + rs.getInt("Salary") +
+                "\nSSN: " + rs.getInt("SSN"));
                 System.out.println(output.toString());
                 System.out.println("\nSearch successful! What would you like to do next?\n1. Search again \n2. Go back to home page");
                 Main.scnr.nextLine();
