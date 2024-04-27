@@ -23,6 +23,19 @@ public class UpdateEmployee {
         }
     }
 
+    public void updateEmployeeSalary(double increasePercentage, double minSalary, double maxSalary, Connection myConn) {
+        String sqlCommand = String.format(
+                "UPDATE employees SET Salary = Salary * (1 + %.2f/100) WHERE Salary >= %.2f AND Salary < %.2f",
+                increasePercentage, minSalary, maxSalary);
+        try {
+            Statement myStmt = myConn.createStatement();
+            myStmt.executeUpdate(sqlCommand);
+            myConn.close();
+        } catch (Exception e) {
+            System.out.println("ERROR " + e.getLocalizedMessage());
+        }
+    }
+
     public static void getUserChoice() {
         String choice = Main.scnr.nextLine().trim();
         chooseFunction(choice);
@@ -45,22 +58,4 @@ public class UpdateEmployee {
         }
     }
 
-    public void updateEmployeeSalary(double percentageIncrease, double lowerBound, double upperBound, int empID,
-            Connection myConn) {
-        try {
-            // Construct SQL command to update salary within the specified range
-            String sqlCommand = String.format(
-                    "UPDATE employees SET Salary = Salary * (1 + %.2f/100) WHERE empID = %d AND Salary >= %.2f AND Salary < %.2f",
-                    percentageIncrease, empID, lowerBound, upperBound);
-
-            // Create statement and execute SQL command
-            Statement myStmt = myConn.createStatement();
-            myStmt.executeUpdate(sqlCommand);
-
-            // Close connection
-            myConn.close();
-        } catch (Exception e) {
-            System.out.println("ERROR " + e.getLocalizedMessage());
-        }
-    }
 }
