@@ -10,8 +10,7 @@ public class UpdateEmployee {
 
             int rowsAffected = myStmt.executeUpdate(sqlCommand);
             if (rowsAffected > 0) {
-                System.out.println(
-                        "\nUpdate successful! What would you like to do next?\n1. Update another column \n2. Go back to home page");
+                System.out.println("\nUpdate successful! What would you like to do next?\n1. Update another column \n2. Go back to home page");
                 getUserChoice();
             } else {
                 System.out.println("Column not found or update failed. Please try again.");
@@ -19,7 +18,8 @@ public class UpdateEmployee {
 
             myConn.close();
         } catch (Exception e) {
-            System.out.println("ERROR " + e.getLocalizedMessage());
+            System.out.println("\nPlease try again with valid inputs.");
+            Main.updateEmployeeData();
         }
     }
 
@@ -30,6 +30,9 @@ public class UpdateEmployee {
         try {
             Statement myStmt = myConn.createStatement();
             myStmt.executeUpdate(sqlCommand);
+            System.out.println("\nSalary updated! What would you like to do next?\n1. Update salary again\n2. Go back to home page");
+            Main.scnr.nextLine();
+            getUserChoice2();
             myConn.close();
         } catch (Exception e) {
             System.out.println("ERROR " + e.getLocalizedMessage());
@@ -41,10 +44,32 @@ public class UpdateEmployee {
         chooseFunction(choice);
     }
 
+    public static void getUserChoice2() {
+        String choice = Main.scnr.nextLine().trim();
+        chooseFunction2(choice);
+    }
+
     public static void chooseFunction(String userChoice) {
         switch (userChoice) {
             case "1":
                 Main.updateEmployeeData();
+                break;
+            case "2":
+                Main.presentOptions();
+                break;
+            default:
+                System.out.println("\nInvalid choice was selected.");
+                System.out
+                        .println("Please select one of the options listed above by choosing the corresponding number.");
+                getUserChoice();
+                break;
+        }
+    }
+
+    public static void chooseFunction2(String userChoice) {
+        switch (userChoice) {
+            case "1":
+                Main.updateEmployeeSalary();
                 break;
             case "2":
                 Main.presentOptions();

@@ -27,7 +27,7 @@ public class SearchEmployee {
             }
             myConn.close();
         }catch (Exception e) {
-            System.out.println("ERROR " + e.getLocalizedMessage());
+            System.out.println("ERROR" + e.getLocalizedMessage());
         } finally {
         }
     }

@@ -38,11 +38,11 @@ public class Main {
 
     public static void updateEmployeeSalary() {
 
-        System.out.println("Please enter the percentage increase:");
+        System.out.println("\nPlease enter the percentage increase:");
         double increasePercentage = scnr.nextDouble();
-        System.out.println("Enter the minimum salary:");
+        System.out.println("\nEnter the minimum salary:");
         double minSalary = scnr.nextDouble();
-        System.out.println("Enter the maximum salary:");
+        System.out.println("\nEnter the maximum salary:");
         double maxSalary = scnr.nextDouble();
 
         UpdateEmployee updater = new UpdateEmployee();
@@ -68,13 +68,13 @@ public class Main {
     }
 
     public static void updateEmployeeData() {
-        System.out.println("Please enter the employee's ID:");
+        System.out.println("\nPlease enter the employee's ID:");
         int empID = scnr.nextInt();
         scnr.nextLine();
-        System.out.println("Which column would you like to update? (e.g., Fname, Lname, email)");
+        System.out.println("\nWhich column would you like to update? (e.g., Fname, Lname, email)");
         String columnName = scnr.next();
         scnr.nextLine();
-        System.out.println("Enter the new value for " + columnName + ":");
+        System.out.println("\nEnter the new value for " + columnName + ":");
         String newValue = scnr.nextLine();
 
         UpdateEmployee updater = new UpdateEmployee();
