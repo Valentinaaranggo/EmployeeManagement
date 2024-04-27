@@ -36,8 +36,19 @@ public class Main {
         tableChanger.addColumn(columnName, dataType, myConn);
     }
 
-    public static void updateEmployeeSalaryInRange() {
+    public static void updateEmployeeSalary() {
 
+        System.out.println("Please enter the percentage increase:");
+        double increasePercentage = scnr.nextDouble();
+        System.out.println("Enter the minimum salary:");
+        double minSalary = scnr.nextDouble();
+        System.out.println("Enter the maximum salary:");
+        double maxSalary = scnr.nextDouble();
+
+        UpdateEmployee updater = new UpdateEmployee();
+
+        Connection myConn = buildConnection();
+        updater.updateEmployeeSalary(increasePercentage, minSalary, maxSalary, myConn);
     }
 
     public static void searchEmployee() {
@@ -62,7 +73,7 @@ public class Main {
         scnr.nextLine();
         System.out.println("Which column would you like to update? (e.g., Fname, Lname, email)");
         String columnName = scnr.next();
-        scnr.nextLine(); // Consume the newline character left by the previous nextInt()
+        scnr.nextLine();
         System.out.println("Enter the new value for " + columnName + ":");
         String newValue = scnr.nextLine();
 
@@ -77,7 +88,7 @@ public class Main {
                 changeTable();
                 break;
             case "2":
-                // updateEmployeeSalary();
+                updateEmployeeSalary();
                 break;
             case "3":
                 updateEmployeeData();
