@@ -7,7 +7,7 @@ public class Main {
 
     static Scanner scnr = new Scanner(System.in);
 
-    public static Connection buildConnection () {
+    public static Connection buildConnection() {
         String url = "jdbc:mysql://localhost:3306/employeeData";
         String user = "root";
         String password = "";
@@ -16,15 +16,14 @@ public class Main {
 
         try {
             myConn = DriverManager.getConnection(url, user, password);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("ERROR " + e.getLocalizedMessage());
         }
 
         return myConn;
     }
 
-    public static void changeTable () {
+    public static void changeTable() {
         out.println("\nWhat column would you like to add?");
         String columnName = scnr.nextLine().trim();
 
@@ -37,11 +36,11 @@ public class Main {
         tableChanger.addColumn(columnName, dataType, myConn);
     }
 
-    public static void updateEmployeeSalary () {
+    public static void updateEmployeeSalaryInRange() {
 
     }
 
-    public static void searchEmployee () {
+    public static void searchEmployee() {
         out.println("\nPlease enter the employee's first name:");
         String fname = scnr.nextLine().trim();
         out.println("\nPlease enter the employee's last name:");
@@ -57,17 +56,28 @@ public class Main {
 
     }
 
-    public static void updateEmployeeData () {
-        
+    public static void updateEmployeeData() {
+        System.out.println("Please enter the employee's ID:");
+        int empID = scnr.nextInt();
+        scnr.nextLine();
+        System.out.println("Which column would you like to update? (e.g., Fname, Lname, email)");
+        String columnName = scnr.next();
+        scnr.nextLine(); // Consume the newline character left by the previous nextInt()
+        System.out.println("Enter the new value for " + columnName + ":");
+        String newValue = scnr.nextLine();
+
+        UpdateEmployee updater = new UpdateEmployee();
+        Connection myConn = buildConnection();
+        updater.updateEmployeeData(columnName, newValue, empID, myConn);
     }
 
-    public static void chooseFunction (String userChoice) {
+    public static void chooseFunction(String userChoice) {
         switch (userChoice) {
             case "1":
                 changeTable();
                 break;
             case "2":
-                updateEmployeeSalary();
+                // updateEmployeeSalary();
                 break;
             case "3":
                 updateEmployeeData();
@@ -77,18 +87,19 @@ public class Main {
                 break;
             default:
                 System.out.println("\nInvalid choice was selected.");
-                System.out.println("Please select one of the options listed above by choosing the corresponding number.");
+                System.out
+                        .println("Please select one of the options listed above by choosing the corresponding number.");
                 getUserChoice(); // Loop back to get a valid choice
                 break;
         }
     }
 
-    public static void getUserChoice(){
+    public static void getUserChoice() {
         String userChoice = scnr.nextLine().trim();
         chooseFunction(userChoice);
     }
 
-    public static void presentOptions () {
+    public static void presentOptions() {
 
         String str1 = "\nWelcome to the Employee Management application! Your options are:";
         String str2 = "\n1. Change table";
@@ -111,6 +122,7 @@ public class Main {
         getUserChoice();
 
     }
+
     public static void main(String[] args) {
 
         presentOptions();
