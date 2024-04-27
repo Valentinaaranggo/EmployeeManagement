@@ -11,7 +11,7 @@ public class UpdateEmployee {
             int rowsAffected = myStmt.executeUpdate(sqlCommand);
             if (rowsAffected > 0) {
                 System.out.println(
-                        "Update successful! What would you like to do next?\n1. Update another column \n2. Go back to home page");
+                        "\nUpdate successful! What would you like to do next?\n1. Update another column \n2. Go back to home page");
                 getUserChoice();
             } else {
                 System.out.println("Column not found or update failed. Please try again.");
